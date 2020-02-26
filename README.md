@@ -3,9 +3,15 @@
 Stone Termux管理工具 是一款帮助你快速完成Termux的常用设置、管理和常用软件安装的便捷工具。
 它可以帮助你快速完成Termux的初始配置和日常管理，支持多种常用工具一键安装配置，图形界面管理和在线更新。
 
-![pictur1](https://github.com/st1020/Stone-Termux-Tool/raw/master/1.jpg)
+![pictur1](https://github.com/st1020/Stone-Termux-Tool/raw/master/pic/1.jpg)
 
-![pictur1](https://github.com/st1020/Stone-Termux-Tool/raw/master/2.jpg)
+![pictur2](https://github.com/st1020/Stone-Termux-Tool/raw/master/pic/2.jpg)
+
+![pictur3](https://github.com/st1020/Stone-Termux-Tool/raw/master/pic/3.jpg)
+
+![pictur4](https://github.com/st1020/Stone-Termux-Tool/raw/master/pic/4.jpg)
+
+![pictur5](https://github.com/st1020/Stone-Termux-Tool/raw/master/pic/5.jpg)
 
 ## 安装
 你可以直接在Termux内输入以下命令安装本工具：
