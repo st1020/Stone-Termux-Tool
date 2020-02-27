@@ -1136,7 +1136,7 @@ function update() {
 
 function help() {
 	stone
-	echo -e "\nStone Termux管理工具 version 1.1\n"
+	echo -e "\nStone Termux管理工具 version 1.01\n"
 	echo "Usage: st [命令] [参数]"
 	echo -e "\nStone Termux管理工具 是一款帮助你快速完成Termux的常用设置、管理和常用软件安装的便捷工具。\n"
 	echo "  命令："
