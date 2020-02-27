@@ -1083,7 +1083,7 @@ function install() {
 					apt update
 					apt install -y wget
 				fi
-				wget -qO "/data/data/com.termux/files/usr/bin/${1}" "$url"
+				wget -qO "/data/data/com.termux/files/usr/bin/${1}" "$update"
 				chmod +x "/data/data/com.termux/files/usr/bin/${1}"
 				read -p "安装完成，你可以在Termux中输入 $1 打开本工具，请按任意键继续..." -n 1 press
 				exit;;
