@@ -85,12 +85,10 @@ function main() {
 	elif [ "${OPTION}" == '10' ]; then
 		SpaceOccupation
 	elif [ "${OPTION}" == '11' ]; then
-		if [ $installed == 0 ]; then
-			install "st"
-		elif [ $installed == 1 ]; then
+		if [ $installed == true ]; then
 			remove
 		else
-			echo "此选项不可用！"
+			install "st"
 		fi
 	elif [ "${OPTION}" == '12' ]; then
 		update
@@ -1079,7 +1077,13 @@ function install() {
 		read -p "你要把 Stone Termux管理工具 安装到Termux系统中吗？ [Y/n] " input
 		case $input in
 			[yY][eE][sS]|[yY])
-				mv -f $SHELL_FILE "/data/data/com.termux/files/usr/bin/${1}"
+				#检测依赖
+				if [ ! -e /data/data/com.termux/files/usr/bin/wget ]; then
+					echo "检测到未安装wget，正在安装..."
+					apt update
+					apt install -y wget
+				fi
+				wget -qO "/data/data/com.termux/files/usr/bin/${1}" "$url"
 				chmod +x "/data/data/com.termux/files/usr/bin/${1}"
 				read -p "安装完成，你可以在Termux中输入 $1 打开本工具，请按任意键继续..." -n 1 press
 				exit;;
@@ -1111,7 +1115,7 @@ function remove() {
 }
 
 function update() {
-	if [ ! $installed == 2 ];then
+	if [ $installed == true ];then
 		#检测依赖
 		if [ ! -e /data/data/com.termux/files/usr/bin/wget ]; then
 			echo "检测到未安装wget，正在安装..."
@@ -1164,24 +1168,14 @@ echo '/____/\__/\____/_/ /_/\___/ '
 #$(dirname $(readlink -f $0))
 #$(cd $(dirname ${BASH_SOURCE:-$0});pwd)
 #$(dirname $(readlink -f ${BASH_SOURCE[0]}))
-if [ "$(dirname $(readlink -f ${BASH_SOURCE[0]}))" == "$(cd $(dirname ${BASH_SOURCE:-$0});pwd)" ] && [ -e "$(dirname $(readlink -f ${BASH_SOURCE[0]}))"/"${0##*/}" ]; then
-	SHELL_FILE="$(dirname $(readlink -f ${BASH_SOURCE[0]}))"/"${0##*/}"
-	#判断是否已经安装到系统
-	if [ "$(dirname $(readlink -f ${BASH_SOURCE[0]}))" == "/data/data/com.termux/files/usr/bin" ]; then
-		installed=1
-		install_menu="从Termux系统中卸载本工具"	
-	else
-		installed=0
-		install_menu="安装本工具到Termux系统"
-	fi
+SHELL_FILE="$(dirname $(readlink -f $0))"/"${0##*/}"
+#判断是否已经安装到系统
+if [ "$(dirname $(readlink -f $0))" == "/data/data/com.termux/files/usr/bin" ]; then
+	installed=true
+	install_menu="从Termux系统中卸载本工具"	
 else
-	installed=2
-	install_menu="此选项不可用"
-	echo "Error:$(dirname $(readlink -f ${BASH_SOURCE[0]}))"/"${0##*/}"
-	echo "$(cd $(dirname ${BASH_SOURCE:-$0});pwd)"
-	echo "获取自身目录异常！无法使用安装到系统或者从系统卸载功能。"
-	echo "如果本脚本已经安装到系统了，你可以直接删除 /data/data/com.termux/files/usr/bin/打开命令（默认为st）来删除本脚本。"
-	read -p "请按任意键继续..." -n 1 press
+	installed=false
+	install_menu="安装本工具到Termux系统"
 fi
 
 gui=false
@@ -1193,14 +1187,10 @@ elif [ $1 == gui ]; then
 	check
 	main
 elif [ $1 == install ]; then
-	if [ $installed == 2 ]; then
-		exit
+	if [ $# == 1 ]; then
+		install "st"
 	else
-		if [ $# == 1 ]; then
-			install "st"
-		else
-			install "$2"
-		fi
+		install "$2"
 	fi
 elif [ $1 == remove ]; then
 	remove
@@ -1227,3 +1217,4 @@ else
 	echo "参数不正确！"
 	help
 fi
+
