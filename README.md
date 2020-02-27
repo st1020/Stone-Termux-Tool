@@ -18,6 +18,10 @@ Stone Termux管理工具 是一款帮助你快速完成Termux的常用设置、�
 ```shell
 pkg i -y wget && bash -c "$(wget -qO- 'https://github.com/st1020/Stone-Termux-Tool/raw/master/st.sh')"
 ```
+或者：
+```shell
+pkg i -y wget && bash -c "$(wget -qO- 'https://gitee.com/st1020/Stone-Termux-Tool/raw/master/st.sh')"
+```
 如果你要把它安装到你的Termux系统中，请使用工具内的“安装本工具到Termux系统”功能，这样，以后你就可以使用st命令直接启动本工具了。
 
 ## 使用
@@ -44,6 +48,9 @@ pkg i -y wget && bash -c "$(wget -qO- 'https://github.com/st1020/Stone-Termux-To
 
 **v1.0 2020.2.26**
 第一次更新
+
+**v1.0.1 2020.2.27**
+修复“安装到系统”功能的bug
 
 ## 致谢
 
