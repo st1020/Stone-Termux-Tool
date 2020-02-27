@@ -1,10 +1,10 @@
 #!/data/data/com.termux/files/usr/bin/bash
 #获取自身绝对路径
-echo $(cd `dirname $0`; pwd)
-echo $(dirname $(readlink -f $0))
-echo $(cd $(dirname ${BASH_SOURCE:-$0});pwd)
-echo $(dirname $(readlink -f ${BASH_SOURCE[0]}))
-echo "${0##*/}"
-echo "$(cd $(dirname ${BASH_SOURCE:-$0});pwd)"
-echo "Error:$(dirname $(readlink -f ${BASH_SOURCE[0]}))"/"${0##*/}"
+echo 1：$(cd `dirname $0`; pwd)
+echo 2：$(dirname $(readlink -f $0))
+echo 3：$(cd $(dirname ${BASH_SOURCE:-$0});pwd)
+echo 4：$(dirname $(readlink -f ${BASH_SOURCE[0]}))
+echo "5：${0##*/}"
+echo "6：$(cd $(dirname ${BASH_SOURCE:-$0});pwd)"
+echo "7：Error:$(dirname $(readlink -f ${BASH_SOURCE[0]}))"/"${0##*/}"
 
